@@ -1,9 +1,10 @@
 
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 import characters from "../data/characters";
 
 function CharacterDetails() {
   const { id } = useParams();
+  const location = useLocation();
 
   const character = characters.find(
     (item) => item.id === Number(id)
@@ -14,7 +15,11 @@ function CharacterDetails() {
   }
 
   return (
-    <div className="details-page">
+    <div
+      className={`details-page ${
+        location.state?.multiverseJump ? "multiverse-jump" : ""
+      }`}
+    >
       <Link to="/gallery" className="back-button">
         ← Back to Gallery
       </Link>
